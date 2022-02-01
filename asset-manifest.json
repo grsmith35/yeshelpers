@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/yeshelpers/static/css/main.0ec06415.css",
-    "main.js": "/yeshelpers/static/js/main.2afba9a1.js",
+    "main.js": "/yeshelpers/static/js/main.b44859da.js",
     "static/js/787.db1fdb17.chunk.js": "/yeshelpers/static/js/787.db1fdb17.chunk.js",
     "static/media/YES-Awards-Logo.png": "/yeshelpers/static/media/YES-Awards-Logo.b819e4d432da41918213.png",
     "static/media/knowledgebase.png": "/yeshelpers/static/media/knowledgebase.755a516e25f493229b0f.png",
     "static/media/employeerecognition.jpeg": "/yeshelpers/static/media/employeerecognition.e27b434ee3e766ed240f.jpeg",
     "index.html": "/yeshelpers/index.html",
     "main.0ec06415.css.map": "/yeshelpers/static/css/main.0ec06415.css.map",
-    "main.2afba9a1.js.map": "/yeshelpers/static/js/main.2afba9a1.js.map",
+    "main.b44859da.js.map": "/yeshelpers/static/js/main.b44859da.js.map",
     "787.db1fdb17.chunk.js.map": "/yeshelpers/static/js/787.db1fdb17.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.0ec06415.css",
-    "static/js/main.2afba9a1.js"
+    "static/js/main.b44859da.js"
   ]
 }
