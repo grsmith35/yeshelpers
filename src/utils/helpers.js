@@ -48,7 +48,6 @@ export function cleanName(string) {
 }
  export function fileWriter(arr) {
   const currentDate = Date.now();
-  console.log(currentDate)
   const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
   const fileExtension = '.xlsx';
   const fileName = `${currentDate} conversion calls`;

@@ -10,10 +10,8 @@ export default function Payroll() {
     const [isError, setIsError] = useState(false);
 
     const handlepayrollclick =(event) => {
-        console.log('we are in here.')
         const file = event.target.files[0];
         setIsError(false);
-        console.log(file)
         //setIsFileAdded(true);
         const promise = new Promise((resolve, reject) => {
             const fileReader = new FileReader();
@@ -75,7 +73,6 @@ export default function Payroll() {
                         ) : (
                             <div>Select a File</div>
                         )}
-                        
                     </form>
                 </div>
                 <div className="col-md-3 bg-color-blue"></div>   
