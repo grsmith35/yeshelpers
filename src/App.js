@@ -16,10 +16,9 @@ function App() {
         <main>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/Payroll Converter" component={Payroll} />
-            <Route exact path="/Resume Builder" component={Resume} />
+            <Route exact path="/Payroll" component={Payroll} />
+            <Route exact path="/Resume" component={Resume} />
             <Route exact path="/Home" component={Home} />
-            <Route exact path="/Job Template" component={Jobs} />
              
             <Route component={Home} />
           </Switch>

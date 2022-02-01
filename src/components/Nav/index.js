@@ -7,8 +7,8 @@ export default function Nav() {
 
     const pages = [
         "Home",
-        "Resume Builder",
-        "Payroll Converter"
+        "Resume",
+        "Payroll"
     ];
 
     const [currentPage, setCurrentPage] = useState("Home")
