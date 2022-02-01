@@ -11,3 +11,89 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+input, textarea:focus {
+  border: 1px solid black;
+}
+
+.jobinput {
+  border: 1px solid black;
+
+}
+
+.verticallink {
+  border-left: 2px solid black;
+  height: 90%;
+}
+
+.bg-color-lightgray {
+  background-color: rgb(181, 182, 182);
+}
+
+.bg-color-blue {
+  background-color: rgba(50, 50, 248, .75);
+}
+
+.bg-color-footer {
+  background-color: rgba(17, 17, 17, 0.5);
+}
+
+.link-font {
+  color:rgb(99, 96, 96)
+}
+
+.headerborder {
+  border-bottom: 2px solid black;
+}
+
+.footerborder {
+  border-top: 2px solid black;
+}
+
+.linkcards {
+  border: 2px solid black;
+}
+
+.imageborder {
+  border-bottom: 2px solid black;
+  padding: 2px 1px;
+
+}
+
+.deletebutton {
+  border: 1px solid red;
+  border-radius: 10px;
+  background-color: rgba(2, 0, 0, 0.6);
+  margin: 3px;
+  margin-left: 15px;
+}
+
+.deletebutton:hover {
+  border: 3px solid black;
+  background-color: red;
+}
+
+.linkcards:hover {
+  background-color: azure;
+  color: black;
+  transform: scale(1.08);
+  box-shadow: 2px blue;
+  text-decoration: none;
+}
+
+.linktext {
+  text-decoration: none;
+}
+
+.wrongfile {
+  color: rgb(175, 1, 1);
+  font-size: larger;
+  font-weight: bolder;
+  border: 1px solid rgb(175, 1, 1);
+}
+
+@media screen and (max-width: 768){
+  .input {
+      margin-bottom: 3;
+  }
+}

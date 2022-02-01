@@ -1,23 +1,34 @@
 import logo from './logo.svg';
 import './App.css';
+import Footer from './components/Footer';
+import Nav from './components/Nav';
+import Payroll from './pages/Payroll';
+import Resume from './pages/Resume';
+import Home from './pages/Home';
+import Jobs from './pages/Jobs'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="">
+      <Router>
+        <Nav></Nav>
+        <main>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/Payroll Converter" component={Payroll} />
+            <Route exact path="/Resume Builder" component={Resume} />
+            <Route exact path="/Home" component={Home} />
+            <Route exact path="/Job Template" component={Jobs} />
+             
+            <Route component={Home} />
+          </Switch>
+        </main>
+        <div>
+          <Footer />
+        </div>
+      </Router>
     </div>
   );
 }
