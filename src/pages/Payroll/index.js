@@ -13,6 +13,7 @@ export default function Payroll() {
         console.log('we are in here.')
         const file = event.target.files[0];
         setIsError(false);
+        console.log(file)
         //setIsFileAdded(true);
         const promise = new Promise((resolve, reject) => {
             const fileReader = new FileReader();
