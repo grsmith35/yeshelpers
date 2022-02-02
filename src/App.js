@@ -16,8 +16,8 @@ function App() {
         <main>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/Payroll Converter" component={Payroll} />
-            <Route exact path="/Resume Builder" component={Resume} />
+            <Route exact path="/yeshelpers/Payroll Converter" component={Payroll} />
+            <Route exact path="/yes/helpers/Resume Builder" component={Resume} />
             <Route exact path="/Home" component={Home} />
              
             <Route component={Home} />
