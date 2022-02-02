@@ -46,15 +46,28 @@ export function cleanName(string) {
       return nameArr;
   }
 }
- export function fileWriter(arr) {
+ export function fileWriter(arr, check) {
   const currentDate = Date.now();
   const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
   const fileExtension = '.xlsx';
-  const fileName = `${currentDate} conversion calls`;
+  let fileName ="";
+  if(check === "conversion") {
+    fileName = `${currentDate} conversion calls`;
+  } else {
+    fileName = `${currentDate} time station`;
+  }
   const ws = XLSX.utils.json_to_sheet(arr);
   const wb = {Sheets: { 'data': ws }, SheetNames: ['data']};
   const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
   const data = new Blob([excelBuffer], { type: fileType});
   FileSaver.saveAs(data,fileName+fileExtension);
 
+ }
+
+ export function nameTrimmer(name) {
+  const spaceLoc = name.indexOf(" ");
+  let newName = {};
+  newName.firstName = name.slice(0, spaceLoc).trim();
+  newName.lastName = name.slice(spaceLoc).trim();
+  return newName;
  }

@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import XLSX from 'xlsx';
-import { cleanName, fileWriter } from '../../utils/helpers';
+import { cleanName, fileWriter, nameTrimmer } from '../../utils/helpers';
 
 export default function Payroll() {
 
-    const [file, setFile] = useState()
-    const [isFileAdded, setIsFileAdded]= useState(false);
     const theArr = [];
     const [isError, setIsError] = useState(false);
+    let check = "";
 
     const handlepayrollclick =(event) => {
         const file = event.target.files[0];
         setIsError(false);
         //setIsFileAdded(true);
         const promise = new Promise((resolve, reject) => {
+            //Create items to read excel sheet
             const fileReader = new FileReader();
             fileReader.readAsArrayBuffer(file);
             fileReader.onload=(e)=> {
@@ -29,35 +29,51 @@ export default function Payroll() {
 
                 resolve(data);
             };
-
+            //check for error in reading
             fileReader.onerror=((error) => {
                 reject(error);
                 setIsError(true);
             })
         })
+        //open spreadsheet to read each line
         promise.then((data) => {
-            for(let i = 0; i < data.length; i++) {
-                if('Agent' in data[i]) {
-                    let newName = cleanName(data[i].Agent);
-                    //console.log(data[i]);
-                    let empInfo = {};
-                    empInfo.firstName = newName.fName;
-                    empInfo.lastName = newName.lName;
-                    empInfo.hours = data[i]["Total Time"];
-                    theArr.push(empInfo);
-                } else {console.log('not an agent line.')}
-            }
-            if(theArr.length === 0) {
+            if(data[0]["Total Time"] === "(Hours)") {
+                check = "conversion";
+                for(let i = 0; i < data.length; i++) {
+                    if('Agent' in data[i]) {
+                        let newName = cleanName(data[i].Agent);
+                        //console.log(data[i]);
+                        let empInfo = {};
+                        empInfo.firstName = newName.fName;
+                        empInfo.lastName = newName.lName;
+                        empInfo.hours = data[i]["Total Time"];
+                        theArr.push(empInfo);
+                    } else {console.log('not an agent line.')}
+                }
+            } else if('Title' in data[0]) {
+                check = "timestation";
+                for(let i = 0; i < data.length; i++) {
+                    let empInfo = nameTrimmer(data[i].Employee);
+                    if(data[i]['Total Hours'] < 40) {
+                        empInfo.hours = data[i]['Total Hours'];
+                        theArr.push(empInfo);
+                    } 
+                    else {
+                        empInfo.hours = 40;
+                        theArr.push(empInfo);
+                        let secondRow = nameTrimmer(data[i].Employee);
+                        secondRow.hours = data[i]['Total Hours'] - 40
+                        theArr.push(secondRow);
+                    }
+                }
+            }else {
                 setIsError(true)
-            } else {
-                fileWriter(theArr);
             }
-        })
-    };
-
-    function handleFileUpload() {
-        
-    };
+            if(!isError){
+                fileWriter(theArr, check);
+            }
+        });
+    }
 
     return (
         <div className="container">
