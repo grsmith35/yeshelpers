@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 export default function Jobhistory({ oldJobs, setOldJobs }) {
 
@@ -6,10 +6,24 @@ export default function Jobhistory({ oldJobs, setOldJobs }) {
         event.preventDefault();
         const toRemove = event.target.parentNode.parentNode.id
         setOldJobs(oldJobs.filter(job => job.id !== toRemove))
+    };
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        let newArray = oldJobs;
+        let count = 0;
+        let targeted = newArray.filter(each => each.id === event.target.parentNode.parentNode.parentNode.id);
+        for(let i = 0; i < newArray.length; i++) {
+            if(newArray[i].id === targeted[0].id) {
+                count = i;
+            }
+        }        
+        newArray[count][name] = value;
+        setOldJobs(newArray);
     }
 
     return (
-        <div>
+        <div onChange={handleChange}>
             {oldJobs.map((job) => (
                 <div key={job.id} className="mb-3" id={job.id}>
                     <div className="row">

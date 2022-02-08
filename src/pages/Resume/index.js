@@ -5,6 +5,7 @@ import Education from '../../components/Education';
 import Jobhistory from '../../components/Jobhistory';
 import Skills from '../../components/Skills';
 import uniqid from 'uniqid';
+import { createResume } from '../../utils/helpers';
 
 export default function Resume() {
 
@@ -14,6 +15,7 @@ export default function Resume() {
     const [pastJobs, setPastJobs] = useState([]);
     const [myEducation, setMyEducation] = useState([])
     const [mySkills, setMySkills] = useState([])
+    let theFinal = [];
 
     function handleShowBox() {
         setShowCurrent(!showCurrent);
@@ -23,16 +25,36 @@ export default function Resume() {
         let theId = uniqid();
         setPastJobs(pastJobs => [{id: theId, title: "anything", company: "a company", description: "did work", startdate: "11/12/2020", enddate: "11/21/2020"},]);
         let anotherId = uniqid();
-        setMyEducation(myEducation => [{id: anotherId, }])
+        setMyEducation(myEducation => [{id: anotherId, degree: "", school: "", year: ""}]);
+        let yetAnotherId = uniqid();
+        setMySkills(mySkills => [{id: yetAnotherId, skill: ""}])
     }, [])
 
     const handleAddJob = (event) => {
         event.preventDefault();
         const newId = uniqid();
         setPastJobs(pastJobs => [...pastJobs, {id: newId, title: "", company: "", description: "", startdate: "", enddate: ""}]);
-        console.log(pastJobs)
     }
-    console.log(pastJobs)
+    
+    const handleAddEducation = (event) => {
+        event.preventDefault();
+        const newId = uniqid();
+        setMyEducation(myEducation => [...myEducation, {id: newId, degree: "", school: "", year: ""}]);
+    }
+
+    const handleAddSkill = (event) => {
+        event.preventDefault();
+        const newId = uniqid();
+        setMySkills(mySkills => [...mySkills, {id: newId, skill: ""}])
+    }
+
+    const handleCreate = (event) => {
+        event.preventDefault();
+        theFinal = [];
+        theFinal.push(personalInfo, currentJob, pastJobs, myEducation, mySkills);
+        var toSend = JSON.stringify(theFinal);
+        createResume(toSend);
+    }
 
     return (
         <div className="container">
@@ -71,17 +93,22 @@ export default function Resume() {
                         <div>
                             <h3 className="ml-3">Education</h3>
                             <Education 
+                                allEducation={myEducation}
+                                setAllEducation={setMyEducation}
                                 />
-                            <button className="btn btn-secondary mt-2">Add Education</button>
+                            <button className="btn btn-secondary mt-2" onClick={handleAddEducation}>Add Education</button>
                             <hr />
                         </div>
                         <div>
                             <h3 className="ml-3">Skills</h3>
-                            <Skills />
-                            <button className="btn btn-secondary mt-2">Add Skill</button>
+                            <Skills 
+                                allSkills={mySkills}
+                                setAllSkills={setMySkills}
+                            />
+                            <button className="btn btn-secondary mt-2" onClick={handleAddSkill}>Add Skill</button>
                             <hr />
                         </div>
-                        <button className="btn btn-secondary my-2">Create Resume</button>
+                        <button className="btn btn-secondary my-2" onClick={handleCreate}>Create Resume</button>
                         <hr />
                     </form>
                 </div>
